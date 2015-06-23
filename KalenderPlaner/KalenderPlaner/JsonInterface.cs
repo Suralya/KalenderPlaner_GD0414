@@ -8,5 +8,6 @@ namespace KalenderPlaner
 {
     class JsonInterface
     {
+        
     }
 }
