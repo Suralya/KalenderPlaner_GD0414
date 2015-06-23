@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
+    /// <summary>
+    /// The Input-Manager converts a File-Content into a string.
+    /// </summary>
     static class InputManager
     {
         public static string FilePath;
         public static string Data;
 
+        /// <summary>
+        /// Pareses the File-Content and stores its value into a string-variable.
+        /// </summary>
+        /// <param name="args">
+        /// The Files name. The files path must be similar to the programs path.
+        /// </param> 
+        /// <returns>
+        /// Returns true if parsing was successful; returns false if some error appeared and writes an error-massage on the console.
+        /// </returns> 
         public static bool Parse(string[] args)
         {
             if (args.Length == 1)
