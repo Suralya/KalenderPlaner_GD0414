@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class Resource
+    class TimeConditions
     {
-        public string Name;
-        public float Value;
+        //Zeitliche Angabe der Verbote Global und für Member in DateTime
     }
 }

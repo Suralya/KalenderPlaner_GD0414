@@ -8,5 +8,9 @@ namespace KalenderPlaner
 {
     class Member
     {
+        public string Name;
+        public List<Resource> Offer;
+        public List<Resource> Demand;
+        public List<TimeConditions> Constrains;
     }
 }
