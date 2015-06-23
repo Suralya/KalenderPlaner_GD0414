@@ -10,9 +10,25 @@ namespace KalenderPlaner
     class JsonInterface
     {
 
-        public static void Import(string jsonfile)
+        public static RawInput Import(string jsonfile)
         {
-            RawInput Lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
+            RawInput lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
+            return lists;
+        }
+
+        public static List<Resource> ResourcesGet(RawInput lists)
+        {
+            return lists.Resources;
+        }
+
+        public static List<TimeConditions> UnavailableDatesGet(RawInput lists)
+        {
+            return lists.UnavailableDates;
+        }
+
+        public static List<Member> MembersGet(RawInput lists)
+        {
+            return lists.MemberList;
         }
 
     }

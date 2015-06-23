@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class TimeConditions
+    public class TimeConditions
     {
         //Zeitliche Angabe der Verbote Global und für Member in DateTime
         //Zeitliche Dauer

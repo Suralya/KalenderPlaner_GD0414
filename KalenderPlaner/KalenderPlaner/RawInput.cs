@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class RawInput
+    [Serializable]
+    public class RawInput
     {
-        public List<Resource> Resources { get; set; }
-        public List<TimeConditions> UnavailableDates { get; set; }
-        public List<Member> MemberList { get; set; }
+        public List<Resource> Resources;
+        public List<TimeConditions> UnavailableDates;
+        public List<Member> MemberList;
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class Member
+    public class Member
     {
         public string Name;
         public List<Resource> Offer;
