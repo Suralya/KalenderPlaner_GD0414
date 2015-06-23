@@ -1,0 +1,68 @@
+{
+  "resources": [
+    {
+      "name": "Raumgröße"
+    },
+    {
+      "name": "Computer Vorhanden"
+    },
+    {
+      "name": "Thomas"
+    },
+    {
+      "name": "Blumen"
+    },
+    {
+      "name": "Fenster"
+    }
+  ],
+  "UnavailableDates": [
+    {
+      "date": "2015-05-02T"
+    },
+    {
+      "datefrom": "2015-06-15T",
+      "dateto": "2015-06-22T"
+    },
+    {
+      "dateto": "2015-08-07T",
+      "datefrom": "2015-08-01T"
+    }
+  ],
+    "MemberList": [
+    {
+      "name": "Raum1"
+      ,
+      "Angebote":
+      [
+      {"name":"Raumgröße", "value": 10},
+      {"name":"Computer", "value":1},
+      {"name":"Thomas", "value":0},
+      {"name": "Blumen","value":1},
+      {"name": "Fenster","value":1}
+      ],
+      "Nachfrage":
+      [
+      ],
+      "Kalenderverbote":
+      [
+      ]
+    },
+        {
+      "name": "GD0414"
+      ,
+      "Angebote":
+      [
+      ],
+      "Nachfrage":
+      [
+      {"name":"Raumgröße", "value": 10},
+      {"name":"Computer", "value":1}
+      ],
+      "Kalenderverbote":
+      [
+        {"date": "2015-10-10T"}
+      ]
+    }
+  ]
+}
