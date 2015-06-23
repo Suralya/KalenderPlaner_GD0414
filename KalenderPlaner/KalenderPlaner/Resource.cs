@@ -10,5 +10,11 @@ namespace KalenderPlaner
     {
         public string Name;
         public float Value;
+
+        public Resource(string name)
+        {
+            Name = name;
+            Value = 0;
+        }
     }
 }
