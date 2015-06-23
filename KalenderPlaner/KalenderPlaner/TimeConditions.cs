@@ -9,5 +9,6 @@ namespace KalenderPlaner
     class TimeConditions
     {
         //Zeitliche Angabe der Verbote Global und für Member in DateTime
+        //Zeitliche Dauer
     }
 }
