@@ -1,1 +1,2 @@
 c:\users\tiplavius\documents\visual studio 2013\Projects\KalenderPlaner\KalenderPlaner\bin\Debug\KalenderPlaner.exe.config
+C:\Users\jastruck\Documents\Visual Studio 2013\Projects\KalenderPlaner_GD0414\KalenderPlaner\KalenderPlaner\bin\Debug\KalenderPlaner.exe.config

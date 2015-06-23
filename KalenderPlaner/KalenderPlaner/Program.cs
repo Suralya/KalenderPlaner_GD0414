@@ -10,6 +10,8 @@ namespace KalenderPlaner
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Project started!");
+            Console.ReadKey();
         }
     }
 }
