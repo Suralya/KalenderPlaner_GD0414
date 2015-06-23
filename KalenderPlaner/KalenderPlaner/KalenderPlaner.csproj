@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calendar.cs" />
+    <Compile Include="Kalender.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="JsonInterface.cs" />
