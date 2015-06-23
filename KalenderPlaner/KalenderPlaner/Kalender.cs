@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class Calendar
+    class Kalender
     {
 
         //einlesen des Kalenderjahres vom User zum erstellen eines Kalenders
@@ -20,5 +20,7 @@ namespace KalenderPlaner
 
         //Infos auf https://msdn.microsoft.com/de-de/library/system.globalization.calendar(v=vs.110).aspx (Calendar) 
         //und https://msdn.microsoft.com/de-de/library/system.datetime(v=vs.110).aspx (DateTime)
+
+        //FRAGE: Membern werden DateTimes zugewiesen oder den DateTimes die Member?
     }
 }
