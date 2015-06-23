@@ -48,7 +48,6 @@
     <Compile Include="Kalender.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="InputManager.cs" />
-    <Compile Include="JsonInterface.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
