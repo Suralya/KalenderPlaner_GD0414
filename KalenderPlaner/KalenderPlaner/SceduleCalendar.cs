@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,5 +23,15 @@ namespace KalenderPlaner
         //und https://msdn.microsoft.com/de-de/library/system.datetime(v=vs.110).aspx (DateTime)
 
         //FRAGE: Membern werden DateTimes zugewiesen oder den DateTimes die Member?
+
+        public int CurrentYear;
+
+        public DateTime SceduleDay; 
+        public Calendar Scedule = CultureInfo.InvariantCulture.Calendar;
+
+        public SceduleCalendar()
+        {
+           SceduleDay = new DateTime(CurrentYear, 1, 1, new GregorianCalendar());
+        }
     }
 }

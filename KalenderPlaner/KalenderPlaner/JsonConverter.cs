@@ -16,10 +16,16 @@ namespace KalenderPlaner
         }
 
 
+
         public RawInput Import(string jsonfile)
         {
             RawInput lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
             return lists;
+        }
+
+        public int CurrentYearGet(RawInput lists)
+        {
+            return lists.CurrentYear;
         }
 
         public List<Resource> ResourcesGet(RawInput lists)

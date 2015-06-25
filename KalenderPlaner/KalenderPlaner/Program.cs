@@ -19,6 +19,7 @@ namespace KalenderPlaner
             string temp="";
             if(InputManager.Parse(args))
             temp = String.Join(",", _jc.ResourcesGet(_jc.Import(InputManager.Data)));
+            Console.WriteLine(_jc.CurrentYearGet(_jc.Import(InputManager.Data)));
 
             Console.WriteLine(temp);
             

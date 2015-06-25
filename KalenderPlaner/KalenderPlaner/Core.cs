@@ -13,5 +13,6 @@ namespace KalenderPlaner
         //Evolutionärer Algorythmus!!
         //viele Raumwechsle-schlecht// 2member direkt hinterinander-schlecht   .etc
 
+        //Rückgabe einer Liste 
     }
 }
