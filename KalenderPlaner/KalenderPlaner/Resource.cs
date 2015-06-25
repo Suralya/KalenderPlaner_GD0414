@@ -16,5 +16,10 @@ namespace KalenderPlaner
             Name = name;
             Value = 0;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

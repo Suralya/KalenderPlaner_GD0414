@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+
 
 namespace KalenderPlaner
 {
@@ -52,26 +52,7 @@ namespace KalenderPlaner
         }
 
 
-        public static RawInput Import(string jsonfile)
-        {
-            RawInput lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
-            return lists;
-        }
 
-        public static List<Resource> ResourcesGet(RawInput lists)
-        {
-            return lists.Resources;
-        }
-
-        public static List<TimeConditions> UnavailableDatesGet(RawInput lists)
-        {
-            return lists.UnavailableDates;
-        }
-
-        public static List<Member> MembersGet(RawInput lists)
-        {
-            return lists.MemberList;
-        }
 
 
         private static void WriteError(string message)

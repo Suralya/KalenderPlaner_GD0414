@@ -8,5 +8,7 @@ namespace KalenderPlaner
 {
     class Core
     {
+
+
     }
 }

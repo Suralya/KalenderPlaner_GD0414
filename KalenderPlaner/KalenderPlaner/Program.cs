@@ -8,7 +8,7 @@ namespace KalenderPlaner
 {
     class Program
     {
-
+        private static JsonConverter _jc = new JsonConverter(); 
         public static ConsoleColor DefaultColor = ConsoleColor.Gray;
 
         static void Main(string[] args)
@@ -16,18 +16,11 @@ namespace KalenderPlaner
             Console.WriteLine("Project started!");
             Console.Title = "Kalenderplaner";
 
-            if (InputManager.Parse(args))
-            {
-                Console.WriteLine("Memberdaten eingelesen.");
-                Console.WriteLine();
-                Console.WriteLine("Inhalt:");
-                Console.WriteLine(InputManager.Data);
-            }
-            else
-            {
-                Console.WriteLine("Fehler beim Einlesen der Member-Daten!");
-            }
+            string temp="";
+            if(InputManager.Parse(args))
+            temp = String.Join(",", _jc.ResourcesGet(_jc.Import(InputManager.Data)));
 
+            Console.WriteLine(temp);
             
             Console.ReadKey(true);
         }
