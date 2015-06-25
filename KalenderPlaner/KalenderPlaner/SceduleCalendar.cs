@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class Kalender
+    class SceduleCalendar
     {
 
         //einlesen des Kalenderjahres vom User zum erstellen eines Kalenders
