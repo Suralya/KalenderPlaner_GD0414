@@ -23,7 +23,13 @@
             "date": "once,02,march,2016"
         },
         {
-            "date": "once,04:30-08:10,11-13,March,2016"
+            "date": "once,04:30-08:10,11-13,march,2016"
+        },
+        {
+            "date": "once,00:00-9:00,10-10,november-january,2016-2017"
+        },
+        {
+            "date": "once,20-26,june-august,2016"
         }
     ],
     "MemberList": [
