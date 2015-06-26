@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
@@ -83,11 +84,13 @@ namespace KalenderPlaner
         }
 
 
+        // Time-Converter
         public void SaveTimeCondition(string conditions)
         {
             string[] tempCond = conditions.Split(',');
-            if (tempCond.Length <= 1)
+            if (tempCond.Length <= 1 || tempCond.Length > 5)
                 throw new StringToDateConvertException();
+
             switch (tempCond[0].ToLower())
             {
                 case "once":
@@ -102,25 +105,63 @@ namespace KalenderPlaner
             }
         }
 
+
         private void SaveOnceCondition(string[] condition)
         {
             int min1, min2, hour1, hour2, day1, day2, month1, month2, year1, year2;
-            for (int i = 1; i < condition.Length; i++)
+
+            switch (condition.Length)
             {
-                switch (condition.Length)
-                {
-                    case 5:
+                case 5:
+                    // Read Minutes and Hours
+                    min1 = ReadMinutes(ParseDate(condition[1])[0]);
+                    min2 = ReadMinutes(ParseDate(condition[1])[1]);
+                    hour1 = ReadHours(ParseDate(condition[1])[0]);
+                    hour2 = ReadHours(ParseDate(condition[1])[1]);
+                    // Read Day
+                    day1 = ReadDayOrYear(ParseDate(condition[2])[0]);
+                    day2 = ReadDayOrYear(ParseDate(condition[2])[1]);
+                    // Read Month
+                    month1 = ReadMonth(ParseDate(condition[3])[0]);
+                    month2 = ReadMonth(ParseDate(condition[3])[1]);
+                    // Read Year
+                    year1 = ReadDayOrYear(ParseDate(condition[4])[0]);
+                    year2 = ReadDayOrYear(ParseDate(condition[4])[1]);
 
-                    case 4:
+                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, hour1, min1, 0), new DateTime(year2, month2, day2, hour2, min2, 60)));
+                    break;
+                case 4:
+                    // Read Day
+                    day1 = ReadDayOrYear(ParseDate(condition[1])[0]);
+                    day2 = ReadDayOrYear(ParseDate(condition[1])[1]);
+                    // Read Month
+                    month1 = ReadMonth(ParseDate(condition[2])[0]);
+                    month2 = ReadMonth(ParseDate(condition[2])[1]);
+                    // Read Year
+                    year1 = ReadDayOrYear(ParseDate(condition[3])[0]);
+                    year2 = ReadDayOrYear(ParseDate(condition[3])[1]);
 
-                    case 3:
+                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, 1, 0, 0), new DateTime(year2, month2, day2, 24, 0, 0)));
+                    break;
+                case 3:
+                    // Read Month
+                    month1 = ReadMonth(ParseDate(condition[1])[0]);
+                    month2 = ReadMonth(ParseDate(condition[1])[1]);
+                    // Read Year
+                    year1 = ReadDayOrYear(ParseDate(condition[2])[0]);
+                    year2 = ReadDayOrYear(ParseDate(condition[2])[1]);
 
-                    case 2:
+                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, 1), new DateTime(year2, month2, 29))); // Last-Month does not match
+                    break;
+                case 2:
+                    // Read Year
+                    year1 = ReadDayOrYear(ParseDate(condition[1])[0]);
+                    year2 = ReadDayOrYear(ParseDate(condition[1])[1]);
 
-                    default:
-                        throw new StringToDateConvertException();
-                        break;
-                }
+                    OnceSpans.Add(new Timespan(new DateTime(year1, 1, 1), new DateTime(year2, 12, 29))); // Last-Month does not match
+                    break;
+                default:
+                    throw new StringToDateConvertException();
             }
         }
 
@@ -128,5 +169,100 @@ namespace KalenderPlaner
         {
             throw new NotImplementedException();
         }
+
+
+        private int ReadMinutes(string s)
+        {
+            string[] temp = s.Split(':');
+            if (temp.Length != 2)
+                throw new StringToDateConvertException();
+            return Convert.ToInt32(temp[1].Trim());
+        }
+
+        private int ReadHours(string s)
+        {
+            string[] temp = s.Split(':');
+            if (temp.Length != 2)
+                throw new StringToDateConvertException();
+            return Convert.ToInt32(temp[0].Trim());
+        }
+
+        private int ReadMonth(string s)
+        {
+            string temp = "";
+            switch (s.ToLower())
+            {
+                case "january":
+                case "jan":
+                    return 1;
+
+                case "february":
+                case "feb":
+                    return 2;
+
+                case "march":
+                case "mar":
+                    return 3;
+
+                case "april":
+                case "apr":
+                    return 4;
+
+                case "may":
+                    return 5;
+
+                case "june":
+                    return 6;
+
+                case "july":
+                    return 7;
+
+                case "august":
+                case "aug":
+                    return 8;
+
+                case "september":
+                case "sept":
+                    return 9;
+
+                case "october":
+                case "oct":
+                    return 10;
+
+                case "november":
+                case "nov":
+                    return 11;
+
+                case "december":
+                case "dec":
+                    return 12;
+
+                default:
+                    throw new StringToDateConvertException();
+            }
+        }
+
+        private int ReadDayOrYear(string s)
+        {
+            return Convert.ToInt32(s.Trim());
+        }
+
+
+        private string[] ParseDate(string s)
+        {
+            string[] parsedString;
+            parsedString = s.Split('-');
+
+            for (int i = 0; i < parsedString.Length; i++)
+            {
+                parsedString[i] = parsedString[i].Trim();
+            }
+
+            if (parsedString.Length > 2)
+                throw new StringToDateConvertException();
+
+            return parsedString;
+        }
+        // -----
     }
 }
