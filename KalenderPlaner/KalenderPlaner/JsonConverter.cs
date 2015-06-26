@@ -128,7 +128,7 @@ namespace KalenderPlaner
                     year1 = ReadDayOrYear(ParseDate(condition[4])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[4])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, hour1, min1, 0), new DateTime(year2, month2, day2, hour2, min2, 60)));
+                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, hour1, min1, 0), new DateTime(year2, month2, day2, hour2, min2, 59)));
                     break;
                 case 4:
                     // Read Day
@@ -250,8 +250,17 @@ namespace KalenderPlaner
 
         private string[] ParseDate(string s)
         {
-            string[] parsedString;
-            parsedString = s.Split('-');
+            string[] parsedString = new string[2];
+            string[] tempString = s.Split('-');
+            parsedString[0] = tempString[0];
+            if (tempString.Length == 2)
+            {
+                parsedString[1] = tempString[1];
+            }
+            else
+            {
+                parsedString[1] = tempString[0];
+            }
 
             for (int i = 0; i < parsedString.Length; i++)
             {
