@@ -20,19 +20,10 @@
     ],
     "UnavailableDates": [
         {
-            "date": "2015-05-02T"
+            "date": "once,02,march,2016"
         },
         {
-            "datefrom": "2015-06-15T",
-            "dateto": "2015-06-22T"
-        },
-        {
-            "AllDays": "Sunday"
-        },
-        {
-            "AllDays": "Friday",
-            "datefrom": "2015-06-15T",
-            "dateto": "2015-06-22T"
+            "date": "once,04:30-08:10,11-13,March,2016"
         }
     ],
     "MemberList": [

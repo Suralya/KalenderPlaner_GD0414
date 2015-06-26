@@ -70,6 +70,7 @@
     <Compile Include="RawInput.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="TimeConditions.cs" />
+    <Compile Include="Timespan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
