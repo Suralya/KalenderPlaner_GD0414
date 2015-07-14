@@ -68,7 +68,7 @@
     <Compile Include="GeneticAlgorithm\Genome.cs" />
     <Compile Include="GeneticAlgorithm\MainAlgorithm.cs" />
     <Compile Include="JsonConverter.cs" />
-    <Compile Include="SceduleCalendar.cs" />
+    <Compile Include="ScheduleCalendar.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Member.cs" />
