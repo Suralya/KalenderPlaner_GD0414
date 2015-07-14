@@ -8,21 +8,21 @@ namespace KalenderPlaner
 {
     class Timespan
     {
-        public DateTime StarTime;
+        public DateTime StartTime;
         public DateTime EndTime;
 
-        public Timespan(DateTime starTime, DateTime endTime)
+        public Timespan(DateTime startTime, DateTime endTime)
         {
-            StarTime = starTime;
+            StartTime = startTime;
             EndTime = endTime;
         }
 
-        public Timespan(DateTime starTime) : this(starTime, starTime) { }
+        public Timespan(DateTime startTime) : this(startTime, startTime) { }
 
         public override string ToString()
         {
-            return string.Format("Von: {0:00}:{1:00} am {2:00}.{3:00}.{4}/ Bis: {5:00}:{6:00} am {7:00}.{8:00}.{9}", StarTime.Hour, StarTime.Minute, StarTime.Day,
-                StarTime.Month, StarTime.Year, EndTime.Hour, EndTime.Minute, EndTime.Day,
+            return string.Format("Von: {0:00}:{1:00} am {2:00}.{3:00}.{4}/ Bis: {5:00}:{6:00} am {7:00}.{8:00}.{9}", StartTime.Hour, StartTime.Minute, StartTime.Day,
+                StartTime.Month, StartTime.Year, EndTime.Hour, EndTime.Minute, EndTime.Day,
                 EndTime.Month, EndTime.Year);
         }
     }

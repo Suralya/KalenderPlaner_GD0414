@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    class SceduleCalendar
+    class ScheduleCalendar
     {
 
         //einlesen des Kalenderjahres vom User zum erstellen eines Kalenders
@@ -26,12 +26,12 @@ namespace KalenderPlaner
 
         public int CurrentYear;
 
-        public DateTime SceduleDay; 
-        public Calendar Scedule = CultureInfo.InvariantCulture.Calendar;
+        public DateTime ScheduleDay; 
+        public Calendar Schedule = CultureInfo.InvariantCulture.Calendar;
 
-        public SceduleCalendar()
+        public ScheduleCalendar()
         {
-           SceduleDay = new DateTime(CurrentYear, 1, 1, new GregorianCalendar());
+           ScheduleDay = new DateTime(CurrentYear, 1, 1, new GregorianCalendar());
         }
     }
 }
