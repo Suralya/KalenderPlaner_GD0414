@@ -12,5 +12,12 @@ namespace KalenderPlaner
         public List<Resource> Offer;
         public List<Resource> Demand;
         public List<TimeConditions> Constrains;
+
+        public Member()
+        {
+            Offer = new List<Resource>();
+            Demand = new List<Resource>();
+            Constrains = new List<TimeConditions>();
+        }
     }
 }
