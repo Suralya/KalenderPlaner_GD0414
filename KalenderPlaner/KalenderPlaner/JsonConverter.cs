@@ -128,7 +128,7 @@ namespace KalenderPlaner
                     year1 = ReadDayOrYear(ParseDate(condition[4])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[4])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, hour1, min1, 0), new DateTime(year2, month2, day2, hour2, min2, 59)));
+                    OnceSpans.Add(new Timespan(WriteDateString(min1, hour1, day1, month1, year1), WriteDateString(min2, hour2, day2, month2, year2)));
                     break;
                 case 4:
                     // Read Day
@@ -141,7 +141,7 @@ namespace KalenderPlaner
                     year1 = ReadDayOrYear(ParseDate(condition[3])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[3])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, 1, 0, 0), new DateTime(year2, month2, day2, 24, 0, 0)));
+                    OnceSpans.Add(new Timespan(WriteDateString(0, 0, day1, month1, year1), WriteDateString(0, 0, day2, month2, year2)));
                     break;
                 case 3:
                     // Read Month
@@ -151,14 +151,14 @@ namespace KalenderPlaner
                     year1 = ReadDayOrYear(ParseDate(condition[2])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[2])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, 1), new DateTime(year2, month2, 29))); // Last-Month does not match
+                    OnceSpans.Add(new Timespan(WriteDateString(0, 0, 0, month1, year1), WriteDateString(0, 0, 0, month2, year2))); // Last-Month does not match
                     break;
                 case 2:
                     // Read Year
                     year1 = ReadDayOrYear(ParseDate(condition[1])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[1])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, 1, 1), new DateTime(year2, 12, 29))); // Last-Month does not match
+                    OnceSpans.Add(new Timespan(WriteDateString(0, 0, 0, 0, year1), WriteDateString(0, 0, 0, 0, year2))); // Last-Month does not match
                     break;
                 default:
                     throw new StringToDateConvertException();
@@ -167,7 +167,8 @@ namespace KalenderPlaner
 
         private void SavePermCondition(string[] condition)
         {
-            int min1, min2, hour1, hour2, day1, day2, month1, month2, year1, year2;
+            throw new NotImplementedException(); 
+ /*           int min1, min2, hour1, hour2, day1, day2, month1, month2, year1, year2;
 
             for (int i = 0; i < condition.Length; i++)
             {
@@ -192,7 +193,7 @@ namespace KalenderPlaner
                     year1 = ReadDayOrYear(ParseDate(condition[4])[0]);
                     year2 = ReadDayOrYear(ParseDate(condition[4])[1]);
 
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, hour1, min1, 0), new DateTime(year2, month2, day2, hour2, min2, 59)));
+                    OnceSpans.Add(new Timespan(WriteDateString(min1, hour1, day1, month1, year1), WriteDateString(min2, hour2, day2, month2, year2)));
                     break;
                 case 4:
                     // Read Day
@@ -226,7 +227,7 @@ namespace KalenderPlaner
                     break;
                 default:
                     throw new StringToDateConvertException();
-            }
+            } */
         }
 
 
@@ -339,10 +340,9 @@ namespace KalenderPlaner
             return text;
         }
 
-
-
-
+        public string WriteDateString(int min, int hour, int day, int month, int year)
+        {
+            return string.Format("{0}:{1}, {2}, {3}, {4}", hour != 0 ? hour : '#', min != 0 ? min : '#', day != 0 ? day : '#', month != 0 ? month : '#', year != 0 ? year : '#');
+        }
     }
-
-
 }
