@@ -19,7 +19,7 @@ namespace KalenderPlaner
 
         //Rückgabe einer Liste 
 
-        public Genome<List<Member>> GetMemberGenomes(List<Member> members)
+        private Genome<List<Member>> GetMemberGenomes(List<Member> members)
         {
             return new Genome<List<Member>>(members);
         }
@@ -29,7 +29,7 @@ namespace KalenderPlaner
             var temp = new List<Genome<List<Member>>>();
             for (int i = 0; i < populationSize; i++)
             {
-                temp.Add(new Genome<List<Member>>(members));
+                temp.Add(GetMemberGenomes(members));
             }
             return temp;
         }
