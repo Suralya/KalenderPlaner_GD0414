@@ -189,7 +189,6 @@ namespace KalenderPlaner
 
         private int ReadMonth(string s)
         {
-            string temp = "";
             switch (s.ToLower())
             {
                 case "january":
