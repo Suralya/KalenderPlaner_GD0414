@@ -60,6 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneticAlgorithm\BackpackProblem\BackpackProblem.cs" />
+    <Compile Include="GeneticAlgorithm\BackpackProblem\Breeding.cs" />
+    <Compile Include="GeneticAlgorithm\BackpackProblem\ExtractItemsFromInt32Value.cs" />
+    <Compile Include="GeneticAlgorithm\BackpackProblem\FitnessFunction.cs" />
+    <Compile Include="GeneticAlgorithm\BackpackProblem\Item.cs" />
+    <Compile Include="GeneticAlgorithm\Genome.cs" />
+    <Compile Include="GeneticAlgorithm\MainAlgorithm.cs" />
     <Compile Include="JsonConverter.cs" />
     <Compile Include="SceduleCalendar.cs" />
     <Compile Include="Core.cs" />
@@ -93,6 +100,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
