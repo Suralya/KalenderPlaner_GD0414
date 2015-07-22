@@ -40,11 +40,11 @@ namespace KalenderPlaner
 
             // Testing: Time-Converter //TODO Fix error: You just can run the methode with a full time-string
             Console.WriteLine(Environment.NewLine);
-            string tempString = "perm, 08:00 - 11:00,1, march, 2016 - 2019"; 
+            string tempString = "perm, #:#,1, march, #"; 
             _jc.SaveTimeCondition(tempString);
             Console.WriteLine("Eingabe: " + Environment.NewLine + tempString + Environment.NewLine);
             Console.WriteLine("Ausgabe: ");
-            Console.WriteLine(_jc.OnceSpans[0].ToString());
+            Console.WriteLine(_jc.PermSpans[0].ToString());
             // -----
 
             Console.ReadKey(true);

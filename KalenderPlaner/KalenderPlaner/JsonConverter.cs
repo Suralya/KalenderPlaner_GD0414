@@ -10,6 +10,37 @@ using Newtonsoft.Json;
 
 namespace KalenderPlaner
 {
+    [Serializable]
+    public class InvalidDateException : Exception
+    {
+        //
+        // For guidelines regarding the creation of new exception types, see
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
+        // and
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
+        //
+
+        public InvalidDateException()
+        {
+        }
+
+        public InvalidDateException(string message)
+            : base(message)
+        {
+        }
+
+        public InvalidDateException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+
+        protected InvalidDateException(
+            SerializationInfo info,
+            StreamingContext context)
+            : base(info, context)
+        {
+        }
+    }
 
     [Serializable]
     public class StringToDateConvertException : Exception
@@ -167,67 +198,33 @@ namespace KalenderPlaner
 
         private void SavePermCondition(string[] condition)
         {
-            throw new NotImplementedException(); 
- /*           int min1, min2, hour1, hour2, day1, day2, month1, month2, year1, year2;
 
-            for (int i = 0; i < condition.Length; i++)
+            int min1, min2, hour1, hour2, day1, day2, month1, month2, year1, year2;
+
+            // Read Minutes and Hours
+            min1 = ReadMinutes(IfEntryIsHashtag(ParseDate(condition[1])[0]));
+            min2 = ReadMinutes(IfEntryIsHashtag(ParseDate(condition[1])[1]));
+            hour1 = ReadHours(IfEntryIsHashtag(ParseDate(condition[1])[0]));
+            hour2 = ReadHours(IfEntryIsHashtag(ParseDate(condition[1])[1]));
+            // Read Day
+            day1 = ReadDayOrYear(IfEntryIsHashtag(ParseDate(condition[2])[0]));
+            day2 = ReadDayOrYear(IfEntryIsHashtag(ParseDate(condition[2])[1]));
+            // Read Month
+            month1 = ReadMonth(IfEntryIsHashtag(ParseDate(condition[3])[0]));
+            month2 = ReadMonth(IfEntryIsHashtag(ParseDate(condition[3])[1]));
+            // Read Year
+            year1 = ReadDayOrYear(IfEntryIsHashtag(ParseDate(condition[4])[0]));
+            year2 = ReadDayOrYear(IfEntryIsHashtag(ParseDate(condition[4])[1]));
+
+            //TO DO DEBUG int -35
+            if (year1 != 0 && month1 == 0 && day1 == 0 && hour1 == 0 && min1 == 0 ||
+                year1 != 0 && month1 != 0 && day1 == 0 && hour1 == 0 && min1 == 0 ||
+                year1 != 0 && month1 != 0 && day1 != 0 && hour1 == 0 && min1 == 0 ||
+                year1 != 0 && month1 != 0 && day1 != 0 && hour1 != 0 && min1 != 0)
             {
-                condition[i] = IfEntryIsHashtag(condition[i]);
+                throw new InvalidDateException();
             }
-
-            switch (condition.Length)
-            {
-                case 5:
-                    // Read Minutes and Hours
-                    min1 = ReadMinutes(ParseDate(condition[1])[0]);
-                    min2 = ReadMinutes(ParseDate(condition[1])[1]);
-                    hour1 = ReadHours(ParseDate(condition[1])[0]);
-                    hour2 = ReadHours(ParseDate(condition[1])[1]);
-                    // Read Day
-                    day1 = ReadDayOrYear(ParseDate(condition[2])[0]);
-                    day2 = ReadDayOrYear(ParseDate(condition[2])[1]);
-                    // Read Month
-                    month1 = ReadMonth(ParseDate(condition[3])[0]);
-                    month2 = ReadMonth(ParseDate(condition[3])[1]);
-                    // Read Year
-                    year1 = ReadDayOrYear(ParseDate(condition[4])[0]);
-                    year2 = ReadDayOrYear(ParseDate(condition[4])[1]);
-
-                    OnceSpans.Add(new Timespan(WriteDateString(min1, hour1, day1, month1, year1), WriteDateString(min2, hour2, day2, month2, year2)));
-                    break;
-                case 4:
-                    // Read Day
-                    day1 = ReadDayOrYear(ParseDate(condition[1])[0]);
-                    day2 = ReadDayOrYear(ParseDate(condition[1])[1]);
-                    // Read Month
-                    month1 = ReadMonth(ParseDate(condition[2])[0]);
-                    month2 = ReadMonth(ParseDate(condition[2])[1]);
-                    // Read Year
-                    year1 = ReadDayOrYear(ParseDate(condition[3])[0]);
-                    year2 = ReadDayOrYear(ParseDate(condition[3])[1]);
-
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, day1, 1, 0, 0), new DateTime(year2, month2, day2, 24, 0, 0)));
-                    break;
-                case 3:
-                    // Read Month
-                    month1 = ReadMonth(ParseDate(condition[1])[0]);
-                    month2 = ReadMonth(ParseDate(condition[1])[1]);
-                    // Read Year
-                    year1 = ReadDayOrYear(ParseDate(condition[2])[0]);
-                    year2 = ReadDayOrYear(ParseDate(condition[2])[1]);
-
-                    OnceSpans.Add(new Timespan(new DateTime(year1, month1, 1), new DateTime(year2, month2, 29))); // Last-Month does not match
-                    break;
-                case 2:
-                    // Read Year
-                    year1 = ReadDayOrYear(ParseDate(condition[1])[0]);
-                    year2 = ReadDayOrYear(ParseDate(condition[1])[1]);
-
-                    OnceSpans.Add(new Timespan(new DateTime(year1, 1, 1), new DateTime(year2, 12, 29))); // Last-Month does not match
-                    break;
-                default:
-                    throw new StringToDateConvertException();
-            } */
+            PermSpans.Add(new Timespan(WriteDateString(min1, hour1, day1, month1, year1), WriteDateString(min2, hour2, day2, month2, year2)));
         }
 
 
@@ -335,9 +332,7 @@ namespace KalenderPlaner
 
         private string IfEntryIsHashtag(string text)
         {
-            if (text.Trim() == "#")
-                return "0";
-            return text;
+            return text.Replace('#', '0');
         }
 
         public string WriteDateString(int min, int hour, int day, int month, int year)
