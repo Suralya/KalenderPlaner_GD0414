@@ -1,5 +1,6 @@
 ﻿using System;
 using GeneticAlgorithm;
+using KalenderPlaner;
 
 namespace BackpackProblem
 {

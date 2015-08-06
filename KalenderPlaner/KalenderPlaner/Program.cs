@@ -19,16 +19,21 @@ namespace KalenderPlaner
         private static JsonConverter _jc = new JsonConverter(); 
         public static ConsoleColor DefaultColor = ConsoleColor.Gray;
 
+
         static void Main(string[] args)
         {
             //ShowEvolutionaryAlgorithm
-            RunBackProblemTest(new MainAlgorithm<int>(CrossoverProbability, MutationProbability, PopulationSize,
+            BackpackProblemDemo(new MainAlgorithm<int>(CrossoverProbability, MutationProbability, PopulationSize,
                 GenerationCount, ExtractItemsFromInt32Value.Sort, FitnessFunction.CalculateFitness,
                 Breeding.Crossover, Breeding.Mutation));
 
-
             Console.WriteLine("Project started!");
             Console.Title = "Kalenderplaner";
+
+            var core = new Core(CrossoverProbability, MutationProbability, PopulationSize, GenerationCount);
+            Genome<List<Member>> bestResult = core.Generate();
+
+            Console.WriteLine("Fitnesswert des besten Genoms: " + bestResult.Fitness);
 
             /* string temp="";
             if(InputManager.Parse(args))
@@ -50,7 +55,7 @@ namespace KalenderPlaner
             Console.ReadKey(true);
         }
 
-        private static void RunBackProblemTest(MainAlgorithm<int> a)
+        private static void BackpackProblemDemo(MainAlgorithm<int> a)
         {
             BackpackDemo.GenerateRandomItems();
             Genome<int> Result = a.Evolve(BackpackDemo.GenerateRandomSolutions(PopulationSize));

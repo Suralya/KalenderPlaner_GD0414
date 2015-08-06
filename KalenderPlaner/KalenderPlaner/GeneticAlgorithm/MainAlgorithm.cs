@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KalenderPlaner;
 
 namespace GeneticAlgorithm
 {
@@ -45,6 +46,21 @@ namespace GeneticAlgorithm
             PopulationSize = populationSize;
             GenerationCount = generationCount;
             _firstGeneration = firstGeneration;
+            _fitnessValue = fitnessValue;
+            _crossover = crossover;
+            _mutation = mutation;
+        }
+
+
+        // Constructor ohne FirstGeneration-Delegate!!!
+        public MainAlgorithm(double crossoverProbability, double mutationProbability, int populationSize,
+    int generationCount, FitnessValue fitnessValue, Crossover crossover,
+    Mutation mutation)
+        {
+            CrossoverProbability = crossoverProbability;
+            MutationProbability = mutationProbability;
+            PopulationSize = populationSize;
+            GenerationCount = generationCount;
             _fitnessValue = fitnessValue;
             _crossover = crossover;
             _mutation = mutation;

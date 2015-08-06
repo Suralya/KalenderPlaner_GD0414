@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using BackpackProblem;
 
-namespace GeneticAlgorithm
+namespace KalenderPlaner
 {
     internal class Genome<T>
     {
         public float Fitness;
         public List<Item> ItemsPicked = new List<Item>();
+        public List<Member> MemberPicked = new List<Member>();
 
         public T Parameter;
 

@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using GeneticAlgorithm;
+using KalenderPlaner;
 
 // die derzeizige Fitnessfunktion erlaubt eine Übertretung des Maximalgewichts von bis zu 10%
+
 
 namespace BackpackProblem
 {

@@ -65,9 +65,11 @@
     <Compile Include="GeneticAlgorithm\BackpackProblem\ExtractItemsFromInt32Value.cs" />
     <Compile Include="GeneticAlgorithm\BackpackProblem\FitnessFunction.cs" />
     <Compile Include="GeneticAlgorithm\BackpackProblem\Item.cs" />
-    <Compile Include="GeneticAlgorithm\Genome.cs" />
+    <Compile Include="Genome.cs" />
     <Compile Include="GeneticAlgorithm\MainAlgorithm.cs" />
     <Compile Include="JsonConverter.cs" />
+    <Compile Include="KD_Breeding.cs" />
+    <Compile Include="KD_FitnessFunction.cs" />
     <Compile Include="ScheduleCalendar.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="InputManager.cs" />
