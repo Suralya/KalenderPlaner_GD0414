@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeneticAlgorithm;
-using BackpackProblem;
 
 namespace KalenderPlaner
 {
@@ -22,17 +21,13 @@ namespace KalenderPlaner
 
         static void Main(string[] args)
         {
-            //ShowEvolutionaryAlgorithm
-            BackpackProblemDemo(new MainAlgorithm<int>(CrossoverProbability, MutationProbability, PopulationSize,
-                GenerationCount, ExtractItemsFromInt32Value.Sort, FitnessFunction.CalculateFitness,
-                Breeding.Crossover, Breeding.Mutation));
-
             Console.WriteLine("Project started!");
             Console.Title = "Kalenderplaner";
 
             var core = new Core(CrossoverProbability, MutationProbability, PopulationSize, GenerationCount);
-            Genome<List<Member>> bestResult = core.Generate();
 
+            // Auskommentieren, dann läufts!
+            Genome<Member> bestResult = core.Generate(); // TODO Bisher wird nur ein einzelnes Member zurückgegeben, noch keine List<Member> - FIX SOON!
             Console.WriteLine("Fitnesswert des besten Genoms: " + bestResult.Fitness);
 
             /* string temp="";
@@ -53,30 +48,6 @@ namespace KalenderPlaner
             // -----
 
             Console.ReadKey(true);
-        }
-
-        private static void BackpackProblemDemo(MainAlgorithm<int> a)
-        {
-            BackpackDemo.GenerateRandomItems();
-            Genome<int> Result = a.Evolve(BackpackDemo.GenerateRandomSolutions(PopulationSize));
-
-            Console.WriteLine("Picked Items:");
-            Console.WriteLine();
-
-            foreach (Item t in Result.ItemsPicked)
-            {
-                Console.WriteLine(t.Name + "  " + "\t" + " (Worth:" + t.Worth + ") " +
-                                  "\t" + "(Weight:" + t.Weight + ")");
-            }
-
-            Console.WriteLine();
-            Console.WriteLine("MaxWeight: " + FitnessFunction.MaxValue);
-            Console.WriteLine("Current Weight: " + Result.ItemsPicked.Sum(t => t.Weight));
-            Console.WriteLine("Current Worth: " + Result.ItemsPicked.Sum(t => t.Worth));
-            Console.WriteLine();
-            Console.WriteLine("Weight of all Items: " + ExtractItemsFromInt32Value.Selection.Sum(t => t.Weight));
-            Console.WriteLine("Worth of all Items: " + ExtractItemsFromInt32Value.Selection.Sum(t => t.Worth));
-            Console.WriteLine();
         }
     }
 }

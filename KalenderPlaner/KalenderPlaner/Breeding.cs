@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KalenderPlaner
 {
-    internal static class KD_Breeding
+    internal static class Breeding
     {
         private static readonly Random Rnd = new Random();
 

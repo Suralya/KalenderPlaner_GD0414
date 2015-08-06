@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using GeneticAlgorithm;
 
 namespace KalenderPlaner
@@ -33,14 +29,14 @@ namespace KalenderPlaner
         //Rückgabe einer Liste 
 
 
-        public Genome<List<Member>> Generate()
+        public Genome<Member> Generate()
         {
             var algorithm = new MainAlgorithm<Member>(_crossoverProbability, _mutationProbability, _populationSize,
-                _generationCount, KD_FitnessFunction.CalculateFitness, KD_Breeding.Crossover, KD_Breeding.Mutation);
+                _generationCount, FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation);
 
             var temp = GenerateSolutions(Selection);
 
-            return algorithm.Evolve(temp);
+            return algorithm.Evolve(new List<Genome<Member>>());
         }
 
         public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
@@ -48,7 +44,7 @@ namespace KalenderPlaner
             var firstGeneration = new List<Genome<List<Member>>>();
             for (int i = 0; i < _populationSize; i++)
             {
-                firstGeneration.Add(new Genome<List<Member>>(members));
+                firstGeneration.Add(new Genome<List<Member>>()); //TODO zufälliges Genom
             }
             return firstGeneration;
         }
