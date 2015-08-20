@@ -15,7 +15,8 @@ namespace KalenderPlaner
         private const int PopulationSize = 100;
         private const int GenerationCount = 500;
 
-        private static JsonConverter _jc = new JsonConverter(); 
+        private static JsonConverter _jc = new JsonConverter();
+        private static RawInput rawInput;
         public static ConsoleColor DefaultColor = ConsoleColor.Gray;
 
 
@@ -24,7 +25,7 @@ namespace KalenderPlaner
             Console.WriteLine("Project started!");
             Console.Title = "Kalenderplaner";
 
-            var core = new Core(CrossoverProbability, MutationProbability, PopulationSize, GenerationCount);
+            var core = new Core(CrossoverProbability, MutationProbability, PopulationSize, GenerationCount, _jc, rawInput);
 
             // Auskommentieren, dann läufts!
             Genome<Member> bestResult = core.Generate(); // TODO Bisher wird nur ein einzelnes Member zurückgegeben, noch keine List<Member> - FIX SOON!
