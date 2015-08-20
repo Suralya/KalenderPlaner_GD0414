@@ -84,6 +84,8 @@ namespace KalenderPlaner
 
         public DateTime FirstDateTime;
         public DateTime SecondDateTime;
+
+        public static DateTime StartTime, EndTime;
         public string Content;
 
         private RawInput lists;
@@ -99,9 +101,10 @@ namespace KalenderPlaner
             return lists;
         }
 
-        public int CurrentYearGet(RawInput lists)
+        public void SetGlobalTimes(RawInput lists)
         {
-            return lists.CurrentYear;
+            StartTime = StringToDateTime(lists.StartTime);
+            EndTime = StringToDateTime(lists.EndTime);
         }
 
         public List<Resource> ResourcesGet(RawInput lists)
