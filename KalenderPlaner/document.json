@@ -1,64 +1,107 @@
 {
-    "StartTime": "2015-01-10",
-    "EndTime": "2015-12-30",
+    "StartTime": "2015-01-01",
+    "EndTime": "2015-03-30",
 
     "resources": [
         {
-            "name": "Raumgröße"
+            "name": "Volumen10"
         },
         {
-            "name": "Computer Vorhanden"
+            "name": "Volumen50"
         },
         {
-            "name": "Thomas"
+            "name": "Dozent: Thomas"
         },
         {
-            "name": "Blumen"
+            "name": "Dozent: Bhatty"
         },
         {
-            "name": "Fenster"
+            "name": "Hat Computer"
         }
     ],
     "UnavailableDates": [
         {
-            "date": "once,02,march,2016"
+            "date": "2015-02-13"
         },
         {
-            "date": "once,04:30-08:10,11-13,march,2016"
+            "datefrom": "2015-01-18",
+            "dateto": "2015-01-27"
         },
         {
-            "date": "once,00:00-9:00,10-10,november-january,2016-2017"
-        },
-        {
-            "date": "once,20-26,june-august,2016"
+            "Weekday": "Monday"
         }
     ],
     "MemberList": [
         {
-            "name": "Raum1",
-            "Angebote": [
-                { "name": "Raumgröße", "value": 10 },
-                { "name": "Computer", "value": 1 },
-                { "name": "Thomas", "value": 0 },
-                { "name": "Blumen", "value": 1 },
-                { "name": "Fenster", "value": 1 }
+            "name": "Raum01",
+            "Offer": [
+                { "name": "Volumen10" }
             ],
-            "Nachfrage": [
+            "Demand": [
             ],
-            "Kalenderverbote": [
-            ]
+            "BlockedDays": [
+            ],
+            "Itterations": 10
         },
         {
-            "name": "GD0414",
-            "Angebote": [
+            "name": "KursA",
+            "Offer": [
             ],
-            "Nachfrage": [
-                { "name": "Raumgröße", "value": 10 },
-                { "name": "Computer", "value": 1 }
+            "Demand": [
+                { "name": "Volumen10" },
+                { "name": "Dozent: Bhatty" }
+
             ],
-            "Kalenderverbote": [
-                { "date": "2015-10-10T" }
-            ]
+            "BlockedDays": [
+            ],
+            "Itterations": -1
+        },
+        {
+            "name": "KursB",
+            "Offer": [
+            ],
+            "Demand": [
+                { "name": "Volumen50" },
+                { "name": "Dozent: Thomas" },
+                { "name": "Hat Computer" }
+
+            ],
+            "BlockedDays": [
+            ],
+            "Itterations": -1
+        },
+        {
+            "name": "Bhatty",
+            "Offer": [
+                { "name": "Dozent: Bhatty" }
+            ],
+            "Demand": [
+            ],
+            "BlockedDays": [
+            ],
+            "Itterations": -1
+        },
+                {
+            "name": "Thomas",
+            "Offer": [
+                 { "name": "Dozent: Thomas" }
+            ],
+            "Demand": [
+            ],
+            "BlockedDays": [
+            ],
+            "Itterations": -1
+        },
+        {
+            "name": "Raum02",
+            "Offer": [
+                { "name": "Volumen50" }
+            ],
+            "Demand": [
+            ],
+            "BlockedDays": [
+            ],
+            "Itterations": 8
         }
     ]
 }
