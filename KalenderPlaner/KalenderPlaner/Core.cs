@@ -72,7 +72,7 @@ namespace KalenderPlaner
                         } while (member.BlockedDays.Any(k => k == tmp));
 
                         //Adding Random Day in Datas for Itterations
-                        member.Datas.Add(tmp);
+                        member.Dates.Add(tmp);
                     }
                 }
                 //For all OfferMember
@@ -87,7 +87,7 @@ namespace KalenderPlaner
                         } while (member.BlockedDays.Any(k => k == tmp));
 
                         //Adding Random Day in Datas for Random Anzahl der Kalenders
-                        member.Datas.Add(tmp);
+                        member.Dates.Add(tmp);
                     }
                 }
             }

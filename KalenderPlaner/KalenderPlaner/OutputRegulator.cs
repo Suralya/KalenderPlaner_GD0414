@@ -27,7 +27,7 @@ namespace KalenderPlaner
             foreach (DateTime date in AllDays)
             {
                 Console.Write("{0:00}. {1:00}. {2:0000}", date.Day, date.Month, date.Year);
-                List<Member> tempMember = outputMembers.Where(i => i.Datas.Any(j => j == date)).ToList();
+                List<Member> tempMember = outputMembers.Where(i => i.Dates.Any(j => j == date)).ToList();
                 WriteColored("   " + String.Join(", ", tempMember.Select(i => i.Name)), ConsoleColor.Yellow);
                 Console.WriteLine();
             }

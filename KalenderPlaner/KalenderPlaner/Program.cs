@@ -36,7 +36,7 @@ namespace KalenderPlaner
             FinalTestMember.Add(new Member("Thomas", new List<Resource> { thomas }, new List<Resource>(), new List<DateTime>()));
 
                 //Set Data
-            FinalTestMember[0].Datas.AddRange(new List<DateTime>
+            FinalTestMember[0].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 1), 
                 new DateTime(2015, 1, 4), 
@@ -50,7 +50,7 @@ namespace KalenderPlaner
                 new DateTime(2015, 2, 6)
             });
 
-            FinalTestMember[1].Datas.AddRange(new List<DateTime>
+            FinalTestMember[1].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 3), 
                 new DateTime(2015, 1, 6), 
@@ -62,7 +62,7 @@ namespace KalenderPlaner
                 new DateTime(2015, 1, 30)
             });
 
-            FinalTestMember[2].Datas.AddRange(new List<DateTime>
+            FinalTestMember[2].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 1), 
                 new DateTime(2015, 1, 4), 
@@ -76,7 +76,7 @@ namespace KalenderPlaner
                 new DateTime(2015, 2, 6)
             });
 
-            FinalTestMember[3].Datas.AddRange(new List<DateTime>
+            FinalTestMember[3].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 3), 
                 new DateTime(2015, 1, 6), 
@@ -88,7 +88,7 @@ namespace KalenderPlaner
                 new DateTime(2015, 1, 30)
             });
 
-            FinalTestMember[4].Datas.AddRange(new List<DateTime>
+            FinalTestMember[4].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 1), 
                 new DateTime(2015, 1, 4), 
@@ -102,7 +102,7 @@ namespace KalenderPlaner
                 new DateTime(2015, 2, 6)
             });
 
-            FinalTestMember[5].Datas.AddRange(new List<DateTime>
+            FinalTestMember[5].Dates.AddRange(new List<DateTime>
             {
                 new DateTime(2015, 1, 3), 
                 new DateTime(2015, 1, 6), 

@@ -11,7 +11,7 @@ namespace KalenderPlaner
         public List<DateTime> BlockedDays;
         public int Itterations;
 
-        public List<DateTime> Datas;
+        public List<DateTime> Dates;
 
         public Member(string name, List<Resource> offer, List<Resource> demand, List<DateTime> blockedDays, int itterations)
         {
@@ -21,7 +21,7 @@ namespace KalenderPlaner
             BlockedDays = blockedDays;
             Itterations = itterations;
 
-            Datas = new List<DateTime> { new DateTime(1, 1, 1, new GregorianCalendar()) }; //TODO DateTime-Factory-Methode hier einsätzen
+            Dates = new List<DateTime> { new DateTime(1, 1, 1, new GregorianCalendar()) }; //TODO DateTime-Factory-Methode hier einsätzen
         }
 
         public Member(string name, List<Resource> offer, List<Resource> demand, List<DateTime> blockedDays) : this(name, offer, demand, blockedDays, -1) { }
