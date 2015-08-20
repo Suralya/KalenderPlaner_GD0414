@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Security;
 using System.Text;
@@ -80,6 +82,9 @@ namespace KalenderPlaner
         public List<Timespan> OnceSpans = new List<Timespan>();
         public List<Timespan> PermSpans = new List<Timespan>();
 
+        public DateTime FirstDateTime;
+        public DateTime SecondDateTime;
+        public string Content;
 
         //convertiert string in Jason und andersrum
         public JsonConverter()
@@ -338,6 +343,95 @@ namespace KalenderPlaner
         public string WriteDateString(int min, int hour, int day, int month, int year)
         {
             return string.Format("{0}:{1}, {2}, {3}, {4}", hour != 0 ? hour : '#', min != 0 ? min : '#', day != 0 ? day : '#', month != 0 ? month : '#', year != 0 ? year : '#');
+        }
+
+
+        public int WriteDateTime(List<List<string>> UnavailableDates)
+        {
+            for (int i = 0; i < UnavailableDates.Count; i++)
+            {
+                switch (UnavailableDates.Count)
+                {
+                    case 1:
+                        if (UnavailableDates[i][0].Contains("-") == true)
+                        {
+                            OneDay(UnavailableDates[i][0]);
+                            return 1;
+                        }
+                        else
+                        {
+                            GlobalDay(UnavailableDates[i][0]);
+                            return 2;
+                        }
+                        break;
+                    case 2:
+                        TimeSpan(UnavailableDates[i][0], UnavailableDates[i][1]);
+                        return 3;
+                        break;
+                    case 3:
+                        TimeSpanDay(UnavailableDates[i][0], UnavailableDates[i][1], UnavailableDates[i][2]);
+                        return 4;
+                        break;
+                    default:
+                        throw new Exception();
+                        break;
+                }
+            }
+            return 0;
+        }
+
+        private void OneDay(string Date)
+        {
+            FirstDateTime = StringToDateTime(Date);
+        }
+
+        private void TimeSpan(string DateFrom, string DateTo)
+        {
+            FirstDateTime = StringToDateTime(DateFrom);
+            SecondDateTime = StringToDateTime(DateTo);
+        }
+
+        private void TimeSpanDay(string DateFrom, string DateTo, string Condition)
+        {
+            FirstDateTime = StringToDateTime(DateFrom);
+            SecondDateTime = StringToDateTime(DateTo);
+            Content = Condition;
+        }
+
+        private void GlobalDay(string Condition)
+        {
+            Content = Condition;
+        }
+
+
+        public static DateTime StringToDateTime(string Date)
+        {
+            string time = "";
+            int year = 0001;
+            int month = 01;
+            int day = 01;
+
+            for (int i = 0; i < Date.Length; i++)
+            {
+                switch (i)
+                {
+                    case 4:
+                        year = Convert.ToInt32(time);
+                        time = "";
+                        break;
+                    case 7:
+                        month = Convert.ToInt32(time);
+                        time = "";
+                        break;
+                    default:
+                        time += Date[i];
+                        break;
+                }
+            }
+            day = Convert.ToInt32(time);
+            time = "";
+
+            return new DateTime(year, month, day);
         }
     }
 }
