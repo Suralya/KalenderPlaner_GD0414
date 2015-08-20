@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawInput.cs" />
     <Compile Include="Resource.cs" />
+    <Compile Include="TimeConditionConverter.cs" />
     <Compile Include="TimeConditions.cs" />
     <Compile Include="Timespan.cs" />
   </ItemGroup>

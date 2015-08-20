@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GeneticAlgorithm;
 
@@ -12,6 +13,8 @@ namespace KalenderPlaner
         private int _populationSize = 100;
         private int _generationCount = 500;
         private List<Member> _members; 
+        private static readonly Random Random = new Random();
+        private DateTime _firstDay, _lastDay; //TODO FÜLLEN!!!!!!!!!!
 
         public Core(double crossoverProbability, double mutationProbability, int populationSize, int generationCount, JsonConverter jsonConverter, RawInput rawInput)
         {
@@ -40,15 +43,15 @@ namespace KalenderPlaner
 
             var temp = GenerateSolutions(Selection);
 
-            return algorithm.Evolve(new List<Genome<Member>>());
+            return algorithm.Evolve(new List<Genome<Member>>()); //WTF ?
         }
 
         public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
         {
             var firstGeneration = new List<Genome<List<Member>>>();
-            var randomGen = RandomMembersAtTime(_members);
             for (int i = 0; i < _populationSize; i++)
             {
+                List<Member> randomGen = RandomMembersAtTime(_members);
                 firstGeneration.Add(new Genome<List<Member>>(randomGen));
             }
             return firstGeneration;
@@ -58,12 +61,60 @@ namespace KalenderPlaner
         {
             foreach (Member member in members)
             {
-                List<Member> tmplist = members.Where(i => i.Demand.Any(j => j.Name == member.Name)).ToList();
-                List<Resource> tmplist2 = tmplist.Select(k => new Resource(k.Name)).ToList();
-                member.Offer.AddRange(tmplist2);
+                //For all DemandMember
+                if (member.Itterations > 0)
+                {
+                    for (int i = 0; i < member.Itterations; i++)
+                    {
+                        DateTime tmp;
+                        do
+                        {
+                            tmp = GetRandomDate(_firstDay, _lastDay);
+                        } while (member.BlockedDays.Any(k => k == tmp));
+
+                        //Adding Random Day in Datas for Itterations
+                        member.Datas.Add(tmp);
+                    }
+                }
+                //For all OfferMember
+                else
+                {
+                    for (int i = 0; i < NumberOfDays(_firstDay, _lastDay); i++)
+                    {
+                        DateTime tmp;
+                        do
+                        {
+
+                            tmp = GetRandomDate(_firstDay, _lastDay);
+                        } while (member.BlockedDays.Any(k => k == tmp));
+
+                        //Adding Random Day in Datas for Random Anzahl der Kalenders
+                        member.Datas.Add(tmp);
+                    }
+                }
             }
             return members;
-        } 
+        }
+        private static DateTime GetRandomDate(DateTime from, DateTime to)
+        {
+            var range = to - from;
 
+            var randTimeSpan = new TimeSpan((long)(Random.NextDouble() * range.Ticks));
+
+            return from + randTimeSpan;
+        }
+
+        private static int NumberOfDays(DateTime from, DateTime to)
+        {
+            int tmp = 0;
+            if (from.Day >= to.Day)
+                return tmp;
+            while (from.Day != to.Day)
+            {
+                from.AddDays(1);
+                tmp++;
+            }
+            return tmp;
+        }
     }
 }
