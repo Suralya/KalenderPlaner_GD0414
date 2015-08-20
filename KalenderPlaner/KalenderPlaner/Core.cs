@@ -14,7 +14,6 @@ namespace KalenderPlaner
         private int _generationCount = 500;
         private List<Member> _members; 
         private static readonly Random Random = new Random();
-        private DateTime _firstDay, _lastDay; //TODO FÜLLEN!!!!!!!!!!
 
         public Core(double crossoverProbability, double mutationProbability, int populationSize, int generationCount, JsonConverter jsonConverter, RawInput rawInput)
         {
@@ -69,7 +68,7 @@ namespace KalenderPlaner
                         DateTime tmp;
                         do
                         {
-                            tmp = GetRandomDate(_firstDay, _lastDay);
+                            tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
                         } while (member.BlockedDays.Any(k => k == tmp));
 
                         //Adding Random Day in Datas for Itterations
@@ -79,13 +78,12 @@ namespace KalenderPlaner
                 //For all OfferMember
                 else
                 {
-                    for (int i = 0; i < NumberOfDays(_firstDay, _lastDay); i++)
+                    for (int i = 0; i < NumberOfDays(JsonConverter.StartTime, JsonConverter.EndTime); i++)
                     {
                         DateTime tmp;
                         do
                         {
-
-                            tmp = GetRandomDate(_firstDay, _lastDay);
+                            tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
                         } while (member.BlockedDays.Any(k => k == tmp));
 
                         //Adding Random Day in Datas for Random Anzahl der Kalenders

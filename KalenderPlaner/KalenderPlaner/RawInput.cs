@@ -10,9 +10,16 @@ namespace KalenderPlaner
     [Serializable]
     public class RawInput
     {
-        public int CurrentYear;
+        public string StartTime, EndTime;
         public List<Resource> Resources;
         public List<TimeConditions> UnavailableDates;
         public List<Member> MemberList;
+
+        public RawInput()
+        {
+            Resources = new List<Resource>();
+            UnavailableDates = new List<TimeConditions>();
+            MemberList = new List<Member>();
+        }
     }
 }
