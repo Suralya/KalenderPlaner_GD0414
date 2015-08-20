@@ -49,9 +49,9 @@ namespace KalenderPlaner
         public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
         {
             var firstGeneration = new List<Genome<List<Member>>>();
-            var randomGen = RandomMembersAtTime(_members);
             for (int i = 0; i < _populationSize; i++)
             {
+                List<Member> randomGen = RandomMembersAtTime(_members);
                 firstGeneration.Add(new Genome<List<Member>>(randomGen));
             }
             return firstGeneration;
