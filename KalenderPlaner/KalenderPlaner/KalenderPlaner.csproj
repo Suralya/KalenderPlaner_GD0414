@@ -65,6 +65,7 @@
     <Compile Include="JsonConverter.cs" />
     <Compile Include="Breeding.cs" />
     <Compile Include="FitnessFunction.cs" />
+    <Compile Include="OutputRegulator.cs" />
     <Compile Include="ScheduleCalendar.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="InputManager.cs" />

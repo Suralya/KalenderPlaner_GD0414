@@ -86,16 +86,16 @@ namespace KalenderPlaner
         public DateTime SecondDateTime;
         public string Content;
 
+        private RawInput lists;
+
         //convertiert string in Jason und andersrum
         public JsonConverter()
         {
         }
 
-
-
         public RawInput Import(string jsonfile)
         {
-            RawInput lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
+            lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
             return lists;
         }
 
@@ -114,7 +114,7 @@ namespace KalenderPlaner
             return lists.UnavailableDates;
         }
 
-        public List<Member> MembersGet(RawInput lists)
+        public List<Member> MembersGet(RawInput lists) //TODO IMPLEMENT!
         {
             return lists.MemberList;
         }

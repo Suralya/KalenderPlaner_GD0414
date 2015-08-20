@@ -22,7 +22,7 @@ namespace KalenderPlaner
 
         public static Member Mutation(Genome<Member> genom)
         {
-            return new Member();
+            return new Member("NAME", new List<Resource>(), new List<Resource>(), new List<DateTime>());
         }
     }
 }
