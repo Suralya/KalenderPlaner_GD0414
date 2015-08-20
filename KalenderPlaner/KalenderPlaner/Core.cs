@@ -79,7 +79,7 @@ namespace KalenderPlaner
                 //For all OfferMember
                 else
                 {
-                    for (int i = 0; i < HowManyDays(_firstDay, _lastDay); i++)
+                    for (int i = 0; i < NumberOfDays(_firstDay, _lastDay); i++)
                     {
                         DateTime tmp;
                         do
@@ -104,7 +104,7 @@ namespace KalenderPlaner
             return from + randTimeSpan;
         }
 
-        private static int HowManyDays(DateTime from, DateTime to)
+        private static int NumberOfDays(DateTime from, DateTime to)
         {
             int tmp = 0;
             if (from.Day >= to.Day)
