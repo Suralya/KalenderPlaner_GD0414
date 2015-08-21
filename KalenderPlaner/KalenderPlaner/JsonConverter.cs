@@ -364,16 +364,16 @@ namespace KalenderPlaner
                         else
                         {
                             GlobalDay(UnavailableDates[i][0]);
-                            return 2;
+                            return 4;
                         }
                         break;
                     case 2:
                         TimeSpan(UnavailableDates[i][0], UnavailableDates[i][1]);
-                        return 3;
+                        return 2;
                         break;
                     case 3:
                         TimeSpanDay(UnavailableDates[i][0], UnavailableDates[i][1], UnavailableDates[i][2]);
-                        return 4;
+                        return 3;
                         break;
                     default:
                         throw new Exception();
