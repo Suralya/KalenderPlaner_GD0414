@@ -19,23 +19,10 @@
             "name": "Hat Computer"
         }
     ],
-    "UnavailableDatesStrings": [
-        {
-            "date": "2015-02-13"
-        },
-        {
-            "datefrom": "2015-01-18",
-            "dateto": "2015-01-27"
-        },
-                {
-            "datefrom": "2015-01-18",
-                    "dateto": "2015-01-27",
-                    "Condition": "Monday"
-        },
-        {
-            "Condition": "Monday"
-        }
-    ],
+    "Length": 2,
+
+    "UnavailableDatesStrings": [ "2015-02-13" , "2015-02-03"],
+    
     "MemberList": [
         {
             "name": "Raum01",

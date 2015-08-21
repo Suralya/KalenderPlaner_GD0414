@@ -13,7 +13,8 @@ namespace KalenderPlaner
     {
         public string StartTime, EndTime;
         public List<Resource> Resources;
-        public List<string> UnavailableDatesStrings;
+        public int Length;
+        public string[] UnavailableDatesStrings;
 
         [JsonIgnore]
         public List<DateTime> UnavailableDates;
@@ -22,7 +23,7 @@ namespace KalenderPlaner
         public RawInput()
         {
             Resources = new List<Resource>();
-            UnavailableDatesStrings = new List<string>();
+            UnavailableDatesStrings = new string[Length];
             MemberList = new List<Member>();
 
             UnavailableDates = new List<DateTime>();

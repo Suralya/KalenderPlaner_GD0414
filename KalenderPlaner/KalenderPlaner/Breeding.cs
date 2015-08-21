@@ -17,8 +17,8 @@ namespace KalenderPlaner
 
         public static Genome<List<Member>>[] Crossover(Genome<List<Member>> parent1, Genome<List<Member>> parent2)
         {
-            child1.Parameter.Clear();
-            child2.Parameter.Clear();
+            //child1.Parameter.Clear();
+            //child2.Parameter.Clear();
 
             _crossPoint = Rnd.Next(1, parent1.Parameter.Count - 1);
 
