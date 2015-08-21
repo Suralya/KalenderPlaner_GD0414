@@ -30,8 +30,8 @@ namespace KalenderPlaner
 
             TheCore = new Core(input.MemberList, input.UnavailableDates);
 
-            List<Member> tempMembers = TheCore.RandomMembersAtTime();
-            List<Member> tempMembers2 = TheCore.RandomMembersAtTime();
+            List<Member> tempMembers = Core.RandomMembersAtTime();
+            List<Member> tempMembers2 = Core.RandomMembersAtTime();
 
             OR = new OutputRegulator(JsonConverter.StartTime, JsonConverter.EndTime);
 
