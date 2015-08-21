@@ -46,14 +46,16 @@ namespace KalenderPlaner
         public static Genome<List<Member>> Mutation(Genome<List<Member>> genom)
         {
             child1.Parameter.Clear();
-            child2.Parameter.Clear();
 
             _mutatePoint = Rnd.Next(0, genom.Parameter.Count);
-            Member mutation = new Member("NAME", new List<Resource>(), new List<Resource>(), new List<DateTime>());
             child1.Parameter.AddRange(genom.Parameter);
+            Member originalMember = child1.Parameter[_mutatePoint];
 
-            child1.Parameter.RemoveAt(_mutatePoint);
-            child1.Parameter.Insert(_mutatePoint, mutation);
+            //random
+
+            child1.Parameter[_mutatePoint] = originalMember;
+            
+
 
             return child1;
         }
