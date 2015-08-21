@@ -7,9 +7,9 @@ namespace GeneticAlgorithm
 {
     internal class MainAlgorithm<T>
     {
-        public delegate T[] Crossover(Genome<T> parent1, Genome<T> parent2);
+        public delegate Genome<T>[] Crossover(Genome<T> parent1, Genome<T> parent2);
 
-        public delegate void FirstGeneration(Genome<T> genom);
+        public delegate List<Genome<T>> FirstGeneration(int population);
 
         public delegate void FitnessValue(Genome<T> genom);
 
@@ -17,7 +17,7 @@ namespace GeneticAlgorithm
 
         public delegate List<Genome<T>> GenerateRandomSolutions(int populationSize);
 
-        public delegate T Mutation(Genome<T> genom);
+        public delegate Genome<T> Mutation(Genome<T> genom);
 
         private readonly List<Genome<T>> NextGeneration = new List<Genome<T>>();
         private readonly List<Genome<T>> Solutions = new List<Genome<T>>();
@@ -34,7 +34,7 @@ namespace GeneticAlgorithm
 
         private Genome<T> _bestFitness;
 
-        private T[] _crossedGenomes = new T[2];
+        private Genome<T>[] _crossedGenomes = new Genome<T>[2];
         private Genome<T> _crossoverPartner;
 
         public MainAlgorithm(double crossoverProbability, double mutationProbability, int populationSize,
@@ -51,30 +51,15 @@ namespace GeneticAlgorithm
             _mutation = mutation;
         }
 
-
-        // Constructor ohne FirstGeneration-Delegate!!!
-        public MainAlgorithm(double crossoverProbability, double mutationProbability, int populationSize,
-    int generationCount, FitnessValue fitnessValue, Crossover crossover,
-    Mutation mutation)
+        public Genome<T> Evolve()
         {
-            CrossoverProbability = crossoverProbability;
-            MutationProbability = mutationProbability;
-            PopulationSize = populationSize;
-            GenerationCount = generationCount;
-            _fitnessValue = fitnessValue;
-            _crossover = crossover;
-            _mutation = mutation;
-        }
-
-        public Genome<T> Evolve(List<Genome<T>> items)
-        {
-            Solutions.AddRange(items);
+            List<Genome<T> > temp = _firstGeneration.Invoke(PopulationSize);
+            Solutions.AddRange(temp);
 
             for (int i = 0; i < GenerationCount; i++)
             {
                 for (int k = 0; k < PopulationSize; k++)
                 {
-                    _firstGeneration.Invoke(Solutions[k]);
                     _fitnessValue.Invoke(Solutions[k]);
                 }
 
@@ -99,15 +84,16 @@ namespace GeneticAlgorithm
                                 {
                                     _crossedGenomes = _crossover.Invoke(_crossoverPartner, Solutions[m]);
 
-                                    NextGeneration.Add(new Genome<T>(_crossedGenomes[0]));
-                                    NextGeneration.Add(new Genome<T>(_crossedGenomes[1]));
+                                    NextGeneration.Add(_crossedGenomes[0]);
+                                    NextGeneration.Add(_crossedGenomes[1]);
+
                                     _crossoverPartner = null;
                                 }
                             }
 
                             if (rnd.NextDouble() <= MutationProbability)
                             {
-                                NextGeneration.Add(new Genome<T>(_mutation.Invoke(Solutions[m])));
+                                NextGeneration.Add(_mutation.Invoke(Solutions[m]));
                             }
                         }
                         else
