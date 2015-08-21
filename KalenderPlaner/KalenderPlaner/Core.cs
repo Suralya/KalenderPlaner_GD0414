@@ -48,16 +48,15 @@ namespace KalenderPlaner
             return new Genome<Member>();
         } */
 
-        /*public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
+        public static List<Genome<List<Member>>> GenerateFirstGeneration(int population)
         {
             var firstGeneration = new List<Genome<List<Member>>>();
-            for (int i = 0; i < _populationSize; i++)
+            for (int i = 0; i < population; i++)
             {
-                List<Member> randomGen = RandomMembersAtTime(_members);
-                firstGeneration.Add(new Genome<List<Member>>(randomGen));
+                firstGeneration.Add(new Genome<List<Member>>(RandomMembersAtTime()));
             }
             return firstGeneration;
-        } */
+        }
 
         public static List<Member> RandomMembersAtTime()
         {

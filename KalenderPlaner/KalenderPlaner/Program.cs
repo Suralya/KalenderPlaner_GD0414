@@ -14,6 +14,7 @@ namespace KalenderPlaner
 
         public static List<Member> FinalTestMember = new List<Member>();
         public static JsonConverter _converter = new JsonConverter();
+        public static MainAlgorithm<List<Member>> Algorithm;  
 
         public static Core TheCore;
 
@@ -31,7 +32,6 @@ namespace KalenderPlaner
             TheCore = new Core(input.MemberList, input.UnavailableDates);
 
             List<Member> tempMembers = Core.RandomMembersAtTime();
-            List<Member> tempMembers2 = Core.RandomMembersAtTime();
 
             OR = new OutputRegulator(JsonConverter.StartTime, JsonConverter.EndTime);
 
@@ -136,12 +136,12 @@ namespace KalenderPlaner
             //});
             //// --- END TEST MEMBER CREATION ---
 
-            OR.WriteConsoleSchedule(tempMembers);
+            Algorithm = new MainAlgorithm<List<Member>>(0.8, 0.1, 100, 500, Core.GenerateFirstGeneration, FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation);
+
+            OR.WriteConsoleSchedule(Algorithm.Evolve().Parameter);
 
             Console.ReadKey(true);
             Console.Clear();
-
-            OR.WriteConsoleSchedule(tempMembers2);
 
             Console.ReadKey(true);
         }
