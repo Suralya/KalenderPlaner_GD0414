@@ -35,7 +35,7 @@ namespace GeneticAlgorithm
         private Genome<T> _bestFitness;
 
         private Genome<T>[] _crossedGenomes = new Genome<T>[2];
-        private Genome<T> _crossoverPartner;
+        private Genome<T> _crossoverPartner = new Genome<T>();
 
         public MainAlgorithm(double crossoverProbability, double mutationProbability, int populationSize,
             int generationCount, FirstGeneration firstGeneration, FitnessValue fitnessValue, Crossover crossover,
@@ -76,7 +76,7 @@ namespace GeneticAlgorithm
                         {
                             if (Solutions[m].Fitness >= minimalFitness && rnd.NextDouble() <= CrossoverProbability)
                             {
-                                if (_crossoverPartner == null)
+                                if (_crossoverPartner.Parameter == null)
                                 {
                                     _crossoverPartner = Solutions[m];
                                 }
@@ -87,7 +87,7 @@ namespace GeneticAlgorithm
                                     NextGeneration.Add(_crossedGenomes[0]);
                                     NextGeneration.Add(_crossedGenomes[1]);
 
-                                    _crossoverPartner = null;
+                                    _crossoverPartner = new Genome<T>();
                                 }
                             }
 
