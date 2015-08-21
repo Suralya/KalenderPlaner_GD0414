@@ -27,8 +27,13 @@
             "datefrom": "2015-01-18",
             "dateto": "2015-01-27"
         },
+                {
+            "datefrom": "2015-01-18",
+                    "dateto": "2015-01-27",
+                    "Condition": "Monday"
+        },
         {
-            "Weekday": "Monday"
+            "Condition": "Monday"
         }
     ],
     "MemberList": [
