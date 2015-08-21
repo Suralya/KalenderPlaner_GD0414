@@ -12,13 +12,14 @@ namespace KalenderPlaner
 
         private static int _crossPoint;
         private static int _mutatePoint;
-        private static Genome<List<Member>> child1 = new Genome<List<Member>>();
-        private static Genome<List<Member>> child2 = new Genome<List<Member>>();
+        private static List<Member> refMembers = new List<Member>();
+        private static Genome<List<Member>> child1 = new Genome<List<Member>>(refMembers);
+        private static Genome<List<Member>> child2 = new Genome<List<Member>>(refMembers);
 
         public static Genome<List<Member>>[] Crossover(Genome<List<Member>> parent1, Genome<List<Member>> parent2)
         {
-            //child1.Parameter.Clear();
-            //child2.Parameter.Clear();
+            child1.Parameter.Clear();
+            child2.Parameter.Clear();
 
             _crossPoint = Rnd.Next(1, parent1.Parameter.Count - 1);
 
