@@ -102,6 +102,44 @@ namespace KalenderPlaner
             }
             return tempMembers;
         }
+
+        public static Member RandomizeDatesAtMember(Member member)
+        {
+            member.Dates.Clear();
+            //For all DemandMember
+            if (member.Itterations > 0)
+            {
+                for (int i = 0; i < member.Itterations; i++)
+                {
+                    DateTime tmp;
+                    do
+                    {
+                        tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
+                    } while (member.BlockedDays.Any(k => k == tmp) && _blockedDays.Any(l => l == tmp));
+
+                    //Adding Random Day in Datas for Itterations
+                    member.Dates.Add(tmp);
+                }
+            }
+                //For all OfferMember
+            else
+            {
+                for (int i = 0; i < NumberOfDays(JsonConverter.StartTime, JsonConverter.EndTime); i++)
+                {
+                    DateTime tmp;
+                    do
+                    {
+                        tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
+                    } while (member.BlockedDays.Any(k => k == tmp) && _blockedDays.Any(l => l == tmp));
+
+                    //Adding Random Day in Datas for Random Anzahl der Kalenders
+                    member.Dates.Add(tmp);
+                }
+                
+            }
+            return member;
+        }
+
         private static DateTime GetRandomDate(DateTime from, DateTime to)
         {
             var range = to - from;
