@@ -19,7 +19,7 @@
             "name": "Hat Computer"
         }
     ],
-    "UnavailableDates": [
+    "UnavailableDatesStrings": [
         {
             "date": "2015-02-13"
         },
