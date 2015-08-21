@@ -15,7 +15,9 @@ namespace KalenderPlaner
         public static List<Member> FinalTestMember = new List<Member>();
         public static JsonConverter _converter = new JsonConverter();
 
-        public static OutputRegulator OR = new OutputRegulator(new DateTime(2015, 1, 1), new DateTime(2015, 3, 31));
+        public static Core TheCore;
+
+        public static OutputRegulator OR;
 
         static void Main(string[] args)
         {
@@ -24,11 +26,18 @@ namespace KalenderPlaner
             jsonPath = jsonPath + "\\bin\\Debug\\document.json";
             string jsonFile = File.ReadAllText(jsonPath);
 
+            RawInput input = _converter.Import(jsonFile);
+
+            TheCore = new Core(input.MemberList, input.UnavailableDates);
+
+            TheCore.RandomMembersAtTime(input.MemberList);
+
+            OR = new OutputRegulator(JsonConverter.StartTime, JsonConverter.EndTime);
+
             //InputManager.Parse(test);
 
             //Console.WriteLine(InputManager.Data + "a");
 
-            _converter.Import(jsonFile);
 
             //TestMember
                 //Resources
@@ -126,7 +135,7 @@ namespace KalenderPlaner
             //});
             //// --- END TEST MEMBER CREATION ---
 
-            OR.WriteConsoleSchedule(_converter.Import(jsonFile).MemberList);
+            OR.WriteConsoleSchedule(input.MemberList);
 
             Console.ReadKey(true);
         }

@@ -98,10 +98,14 @@ namespace KalenderPlaner
         public RawInput Import(string jsonfile)
         {
             lists = JsonConvert.DeserializeObject<RawInput>(jsonfile);
+            
+            lists.UnavailableDates = UnavailableDatesGet(lists);
+            SetGlobalTimes();
+
             return lists;
         }
 
-        public void SetGlobalTimes(RawInput lists)
+        public void SetGlobalTimes()
         {
             StartTime = StringToDateTime(lists.StartTime);
             EndTime = StringToDateTime(lists.EndTime);
@@ -112,9 +116,9 @@ namespace KalenderPlaner
             return lists.Resources;
         }
 
-        public List<TimeConditions> UnavailableDatesGet(RawInput lists)
+        public List<DateTime> UnavailableDatesGet(RawInput lists)
         {
-            return lists.UnavailableDates;
+            return lists.UnavailableDatesStrings.Select(StringToDateTime).ToList();
         }
 
         public List<Member> MembersGet(RawInput lists) //TODO IMPLEMENT!

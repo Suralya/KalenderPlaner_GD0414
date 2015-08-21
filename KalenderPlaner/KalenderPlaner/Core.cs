@@ -8,22 +8,22 @@ namespace KalenderPlaner
     class Core
     {
         
-        private double _crossoverProbability = 0.8;
+        /*private double _crossoverProbability = 0.8;
         private double _mutationProbability = 0.1;
         private int _populationSize = 100;
-        private int _generationCount = 500;
+        private int _generationCount = 500; */
         private List<Member> _members; 
         private static readonly Random Random = new Random();
         private List<DateTime> _blockedDays; 
 
-        public Core(double crossoverProbability, double mutationProbability, int populationSize, int generationCount, JsonConverter jsonConverter, RawInput rawInput, List<DateTime> blockedDays)
+        public Core(/*double crossoverProbability, double mutationProbability, int populationSize, int generationCount,*/ List<Member> members, List<DateTime> blockedDays)
         {
-            _crossoverProbability = crossoverProbability;
+            /*_crossoverProbability = crossoverProbability;
             _mutationProbability = mutationProbability;
             _populationSize = populationSize;
-            _generationCount = generationCount;
+            _generationCount = generationCount; */
             _blockedDays = blockedDays;
-            _members = jsonConverter.MembersGet(rawInput);
+            _members = members;
         }
 
         public List<Member> Selection;
@@ -37,18 +37,18 @@ namespace KalenderPlaner
         //Rückgabe einer Liste 
 
 
-        public Genome<Member> Generate()
+        /*public Genome<Member> Generate()
         {
             //var algorithm = new MainAlgorithm<Member>(_crossoverProbability, _mutationProbability, _populationSize,
-            //    _generationCount /*, FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation*/);
+            //    _generationCount , FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation);
 
             //var temp = GenerateSolutions(Selection);
 
             //return algorithm.Evolve(new List<Genome<Member>>()); //TODO: algorithm aufräumen, schmeißt Fehler da Übergaben fehlen/unsinnig sind
             return new Genome<Member>();
-        }
+        } */
 
-        public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
+        /*public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)
         {
             var firstGeneration = new List<Genome<List<Member>>>();
             for (int i = 0; i < _populationSize; i++)
@@ -57,9 +57,9 @@ namespace KalenderPlaner
                 firstGeneration.Add(new Genome<List<Member>>(randomGen));
             }
             return firstGeneration;
-        }
+        } */
 
-        private List<Member> RandomMembersAtTime(List<Member> members)
+        public List<Member> RandomMembersAtTime(List<Member> members) // TODO Make private
         {
             foreach (Member member in members)
             {
@@ -96,23 +96,27 @@ namespace KalenderPlaner
             }
             return members;
         }
-        private static DateTime GetRandomDate(DateTime from, DateTime to)
+        private DateTime GetRandomDate(DateTime from, DateTime to)
         {
             var range = to - from;
 
             var randTimeSpan = new TimeSpan((long)(Random.NextDouble() * range.Ticks));
 
-            return from + randTimeSpan;
+            DateTime temp = from + randTimeSpan;
+
+            DateTime outTime = new DateTime(temp.Year, temp.Month, temp.Day);
+
+            return outTime;
         }
 
-        private static int NumberOfDays(DateTime from, DateTime to)
+        private int NumberOfDays(DateTime from, DateTime to)
         {
             int tmp = 0;
             if (from.Day >= to.Day)
                 return tmp;
-            while (from.Day != to.Day)
+            while (from.Day != to.Day && from.Day < to.Day)
             {
-                from.AddDays(1);
+                from = from.AddDays(1);
                 tmp++;
             }
             return tmp;
