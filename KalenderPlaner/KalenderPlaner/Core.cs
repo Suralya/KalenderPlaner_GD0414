@@ -12,9 +12,9 @@ namespace KalenderPlaner
         private double _mutationProbability = 0.1;
         private int _populationSize = 100;
         private int _generationCount = 500; */
-        private List<Member> _members; 
+        private static List<Member> _members; 
         private static readonly Random Random = new Random();
-        private List<DateTime> _blockedDays; 
+        private static List<DateTime> _blockedDays; 
 
         public Core(/*double crossoverProbability, double mutationProbability, int populationSize, int generationCount,*/ List<Member> members, List<DateTime> blockedDays)
         {
@@ -59,9 +59,13 @@ namespace KalenderPlaner
             return firstGeneration;
         } */
 
-        public List<Member> RandomMembersAtTime() // TODO Make private
+        public static List<Member> RandomMembersAtTime()
         {
-            List<Member> tempMembers = _members.Select(member => new Member(member)).ToList();
+            return RandomMembersAtTime(_members);
+        }
+        public static List<Member> RandomMembersAtTime(List<Member> members)
+        {
+            List<Member> tempMembers = members.Select(member => new Member(member)).ToList();
             tempMembers.ForEach(i => i.Dates.Clear());
             foreach (Member member in tempMembers)
             {
@@ -98,7 +102,7 @@ namespace KalenderPlaner
             }
             return tempMembers;
         }
-        private DateTime GetRandomDate(DateTime from, DateTime to)
+        private static DateTime GetRandomDate(DateTime from, DateTime to)
         {
             var range = to - from;
 
@@ -111,7 +115,7 @@ namespace KalenderPlaner
             return outTime;
         }
 
-        private int NumberOfDays(DateTime from, DateTime to)
+        private static int NumberOfDays(DateTime from, DateTime to)
         {
             int tmp = 0;
             if (from.Day >= to.Day)
