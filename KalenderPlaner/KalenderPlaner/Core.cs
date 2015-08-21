@@ -14,13 +14,15 @@ namespace KalenderPlaner
         private int _generationCount = 500;
         private List<Member> _members; 
         private static readonly Random Random = new Random();
+        private List<DateTime> _blockedDays; 
 
-        public Core(double crossoverProbability, double mutationProbability, int populationSize, int generationCount, JsonConverter jsonConverter, RawInput rawInput)
+        public Core(double crossoverProbability, double mutationProbability, int populationSize, int generationCount, JsonConverter jsonConverter, RawInput rawInput, List<DateTime> blockedDays)
         {
             _crossoverProbability = crossoverProbability;
             _mutationProbability = mutationProbability;
             _populationSize = populationSize;
             _generationCount = generationCount;
+            _blockedDays = blockedDays;
             _members = jsonConverter.MembersGet(rawInput);
         }
 
@@ -70,7 +72,7 @@ namespace KalenderPlaner
                         do
                         {
                             tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
-                        } while (member.BlockedDays.Any(k => k == tmp));
+                        } while (member.BlockedDays.Any(k => k == tmp) && _blockedDays.Any(l => l == tmp));
 
                         //Adding Random Day in Datas for Itterations
                         member.Dates.Add(tmp);
@@ -85,7 +87,7 @@ namespace KalenderPlaner
                         do
                         {
                             tmp = GetRandomDate(JsonConverter.StartTime, JsonConverter.EndTime);
-                        } while (member.BlockedDays.Any(k => k == tmp));
+                        } while (member.BlockedDays.Any(k => k == tmp) && _blockedDays.Any(l => l == tmp));
 
                         //Adding Random Day in Datas for Random Anzahl der Kalenders
                         member.Dates.Add(tmp);
