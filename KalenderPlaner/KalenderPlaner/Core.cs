@@ -62,6 +62,7 @@ namespace KalenderPlaner
         public List<Member> RandomMembersAtTime() // TODO Make private
         {
             List<Member> tempMembers = _members.Select(member => new Member(member)).ToList();
+            tempMembers.ForEach(i => i.Dates.Clear());
             foreach (Member member in tempMembers)
             {
                 //For all DemandMember
