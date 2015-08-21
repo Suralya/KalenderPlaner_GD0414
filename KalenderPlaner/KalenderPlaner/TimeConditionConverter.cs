@@ -159,5 +159,12 @@ namespace KalenderPlaner
             return temp;
         }
 
+        public List<DateTime> AddDaysinGlobalSpan(string condition)
+        {
+            return AddDaysInSpan(JsonConverter.StartTime, JsonConverter.EndTime, condition);
+        }
+
+
+
     }
 }
