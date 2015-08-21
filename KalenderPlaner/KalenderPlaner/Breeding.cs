@@ -51,11 +51,9 @@ namespace KalenderPlaner
             child1.Parameter.AddRange(genom.Parameter);
             Member originalMember = child1.Parameter[_mutatePoint];
 
-            //random
+            originalMember = Core.RandomizeDatesAtMember(originalMember);
 
             child1.Parameter[_mutatePoint] = originalMember;
-            
-
 
             return child1;
         }
