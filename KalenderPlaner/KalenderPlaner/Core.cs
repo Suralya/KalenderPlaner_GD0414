@@ -59,9 +59,10 @@ namespace KalenderPlaner
             return firstGeneration;
         } */
 
-        public List<Member> RandomMembersAtTime(List<Member> members) // TODO Make private
+        public List<Member> RandomMembersAtTime() // TODO Make private
         {
-            foreach (Member member in members)
+            List<Member> tempMembers = _members.Select(member => new Member(member)).ToList();
+            foreach (Member member in tempMembers)
             {
                 //For all DemandMember
                 if (member.Itterations > 0)
@@ -94,7 +95,7 @@ namespace KalenderPlaner
                     }
                 }
             }
-            return members;
+            return tempMembers;
         }
         private DateTime GetRandomDate(DateTime from, DateTime to)
         {

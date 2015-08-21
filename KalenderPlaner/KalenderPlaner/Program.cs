@@ -30,7 +30,8 @@ namespace KalenderPlaner
 
             TheCore = new Core(input.MemberList, input.UnavailableDates);
 
-            TheCore.RandomMembersAtTime(input.MemberList);
+            List<Member> tempMembers = TheCore.RandomMembersAtTime();
+            List<Member> tempMembers2 = TheCore.RandomMembersAtTime();
 
             OR = new OutputRegulator(JsonConverter.StartTime, JsonConverter.EndTime);
 
@@ -135,7 +136,12 @@ namespace KalenderPlaner
             //});
             //// --- END TEST MEMBER CREATION ---
 
-            OR.WriteConsoleSchedule(input.MemberList);
+            OR.WriteConsoleSchedule(tempMembers);
+
+            Console.ReadKey(true);
+            Console.Clear();
+
+            OR.WriteConsoleSchedule(tempMembers2);
 
             Console.ReadKey(true);
         }

@@ -30,5 +30,7 @@ namespace KalenderPlaner
         }
 
         public Member(string name, List<Resource> offer, List<Resource> demand, List<DateTime> blockedDays) : this(name, offer, demand, blockedDays, -1) { }
+
+        public Member(Member m) : this(m.Name, m.Offer, m.Demand, m.BlockedDays, m.Itterations) { }
     }
 }
