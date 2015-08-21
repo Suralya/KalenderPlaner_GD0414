@@ -22,16 +22,15 @@ namespace KalenderPlaner
         /// <returns>
         /// Returns true if parsing was successful; returns false if some error appeared and writes an error-massage on the console.
         /// </returns> 
-        public static bool Parse(string[] args)
+        public static bool Parse(string args)
         {
-            if (args.Length == 1)
-            {
+
                 try
                 {
-                    FilePath = Path.GetFullPath(args[0]);
+                    FilePath = Path.GetFullPath(args);
                     if (File.Exists(FilePath))
                     {
-                        Data = File.ReadAllText(args[0]);
+                        Data = File.ReadAllText(args);
                         return true;
                     }
                     else
@@ -47,7 +46,6 @@ namespace KalenderPlaner
                 {
                     WriteError("Ausnahme aufgetreten: " + e.Message);
                 } 
-            }
             return false;
         }
 

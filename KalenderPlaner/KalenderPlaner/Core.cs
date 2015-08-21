@@ -37,12 +37,13 @@ namespace KalenderPlaner
 
         public Genome<Member> Generate()
         {
-            var algorithm = new MainAlgorithm<Member>(_crossoverProbability, _mutationProbability, _populationSize,
-                _generationCount, FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation);
+            //var algorithm = new MainAlgorithm<Member>(_crossoverProbability, _mutationProbability, _populationSize,
+            //    _generationCount /*, FitnessFunction.CalculateFitness, Breeding.Crossover, Breeding.Mutation*/);
 
-            var temp = GenerateSolutions(Selection);
+            //var temp = GenerateSolutions(Selection);
 
-            return algorithm.Evolve(new List<Genome<Member>>()); //WTF ?
+            //return algorithm.Evolve(new List<Genome<Member>>()); //TODO: algorithm aufräumen, schmeißt Fehler da Übergaben fehlen/unsinnig sind
+            return new Genome<Member>();
         }
 
         public List<Genome<List<Member>>> GenerateSolutions(List<Member> members)

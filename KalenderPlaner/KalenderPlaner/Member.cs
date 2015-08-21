@@ -24,6 +24,11 @@ namespace KalenderPlaner
             Dates = new List<DateTime> { new DateTime(1, 1, 1, new GregorianCalendar()) }; //TODO DateTime-Factory-Methode hier einsätzen
         }
 
+        public Member()
+        {
+
+        }
+
         public Member(string name, List<Resource> offer, List<Resource> demand, List<DateTime> blockedDays) : this(name, offer, demand, blockedDays, -1) { }
     }
 }

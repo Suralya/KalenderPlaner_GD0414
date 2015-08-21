@@ -31,18 +31,11 @@ namespace KalenderPlaner
 
                                     }
                                 }
-
                             }
-
                         }
                     }
-
                 }
-
-
             }
-
-
         }
     }
 }
