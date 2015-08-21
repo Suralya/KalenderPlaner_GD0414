@@ -11,9 +11,7 @@ namespace KalenderPlaner
 {
     class TimeConditionConverter
     {
-
-
-        public static List<DateTime> AddTimeSpan(DateTime spanfrom, DateTime spanto)
+        public static List<DateTime> AddTimespan(DateTime spanfrom, DateTime spanto)
         {
         // adding timespan to list
             List<DateTime> temp=new List<DateTime>();
@@ -29,7 +27,7 @@ namespace KalenderPlaner
             return temp;
         }
 
-        public static List<DateTime> AddTimeSpan(DateTime date)
+        public static List<DateTime> AddSingleDay(DateTime date)
         {
             // adding time to list
             List<DateTime> temp = new List<DateTime>();
@@ -39,7 +37,7 @@ namespace KalenderPlaner
             return temp;
         }
 
-        public static List<DateTime> AddTimeSpan(DateTime kalanderfrom, DateTime kalenderto,string condition)
+        public static List<DateTime> AddDaysInSpan(DateTime kalanderfrom, DateTime kalenderto,string condition)
         {
             //Month/weekday - adding to list
             List<DateTime> temp=new List<DateTime>();
